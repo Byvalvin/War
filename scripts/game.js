@@ -110,8 +110,6 @@ class Game {
     }
 
     updateUI() {
-        if (!game) return;
-
         const cardDisplay1 = document.getElementById('player1-card');
         const cardDisplay2 = document.getElementById('player2-card');
         const roundResultElement = document.getElementById('round-result');
