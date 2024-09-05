@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     let game;
 
-    // Initialize the game based on the selected mode and set up event listeners
+    // Initialize game based on the selected mode and set up event listeners
     function initializeGame() {
         const playerMode = document.getElementById('player-mode').value;
         let player1, player2;
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         game = new Game(player1, player2);
         setupEventListeners();
-        updateUI();  // Ensure UI is updated when the game is initialized
+        updateUI();
     }
 
     // Set up event listeners for user interactions
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('draw-button').addEventListener('click', () => {
             if (game) {
                 game.playRound();
-                updateUI();
             }
         });
 
@@ -60,21 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const roundResultElement = document.getElementById('round-result');
 
             // Update card displays
-            cardDisplay1.innerHTML = ''; // Clear previous card display
-            cardDisplay2.innerHTML = ''; // Clear previous card display
-
-            if (!game.player1.getDeck().isEmpty()) {
-                const card1 = game.player1.getDeck().peekDeck();
-                cardDisplay1.appendChild(card1.createCardElement());
-            }
-
-            if (!game.player2.getDeck().isEmpty()) {
-                const card2 = game.player2.getDeck().peekDeck();
-                cardDisplay2.appendChild(card2.createCardElement());
-            }
+            cardDisplay1.innerHTML = game.player1.getDeck().peekDeck().createCardElement().outerHTML;
+            cardDisplay2.innerHTML = game.player2.getDeck().peekDeck().createCardElement().outerHTML;
 
             // Update round result
-            roundResultElement.innerHTML = game.roundResult || '';
+            roundResultElement.innerHTML = game.roundResult;
         }
     }
 
