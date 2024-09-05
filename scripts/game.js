@@ -114,11 +114,16 @@ class Game {
         const centerCardsElement = document.getElementById('center-cards');
         const roundResultElement = document.getElementById('round-result');
 
-        cardDisplay1.innerHTML = this.player1.getDrawnCard().createCardElement().outerHTML;
-        cardDisplay2.innerHTML = this.player2.getDrawnCard().createCardElement().outerHTML;
+        const player1DrawnCard = this.player1.getDrawnCard();
+        const player2DrawnCard = this.player2.getDrawnCard();
+        if(player1DrawnCard && player2DrawnCard && this.roundResult){
+            cardDisplay1.innerHTML = player1DrawnCard.createCardElement().outerHTML;
+            cardDisplay2.innerHTML = player2DrawnCard.createCardElement().outerHTML;
+            
+            centerCardsElement.innerHTML = ''; // Clear the center cards display
+            roundResultElement.innerHTML = this.roundResult;
+        }
 
-        centerCardsElement.innerHTML = ''; // Clear the center cards display
-
-        roundResultElement.innerHTML = this.roundResult;
+        
     }
 }
