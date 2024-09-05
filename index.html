@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="game-container">
         <h1>War Card Game</h1>
 
         <div class="player-selection">
@@ -24,9 +24,15 @@
             <button id="shuffle-button">Shuffle Deck</button>
         </div>
 
-        <div id="card-display" class="card-display">
-            <div id="player1-card" class="card"></div>
-            <div id="player2-card" class="card"></div>
+        <div class="player-section">
+            <div class="player">
+                <h2>Player 1</h2>
+                <div id="player1-card" class="player-card"></div>
+            </div>
+            <div class="player">
+                <h2>Player 2</h2>
+                <div id="player2-card" class="player-card"></div>
+            </div>
         </div>
 
         <div id="round-result" class="round-result"></div>
