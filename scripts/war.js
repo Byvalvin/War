@@ -69,32 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateUI() {
         if (!game) return;
-
-        const cardDisplay1 = document.getElementById('player1-card');
-        const cardDisplay2 = document.getElementById('player2-card');
-        const roundResultElement = document.getElementById('round-result');
-        const player1DeckDisplay = document.getElementById('player1-deck');
-        const player2DeckDisplay = document.getElementById('player2-deck');
-        const warCardsDisplay = document.getElementById('war-cards');
-
-        if (cardDisplay1 && cardDisplay2 && roundResultElement && player1DeckDisplay && player2DeckDisplay && warCardsDisplay) {
-            const player1DrawnCard = game.player1.getDrawnCard();
-            const player2DrawnCard = game.player2.getDrawnCard();
-
-            cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : 'No Card';
-            cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : 'No Card';
-
-            roundResultElement.innerHTML = game.roundResult;
-
-            player1DeckDisplay.innerHTML = `Deck (${game.player1.getDeck().sizeDeck()} cards)`;
-            player2DeckDisplay.innerHTML = `Deck (${game.player2.getDeck().sizeDeck()} cards)`;
-
-            if (game.warCards.length > 0) {
-                warCardsDisplay.innerHTML = 'War Cards: ' + game.warCards.map(card => card.createCardElement().outerHTML).join(' ');
-            } else {
-                warCardsDisplay.innerHTML = '';
-            }
-        }
+        game.updateUI();
     }
 
     initializeGame();
