@@ -10,7 +10,6 @@ class Game {
 
     initializeGame() {
         this.setupDecks();
-        this.dealCards();
         this.updateUI();
     }
 
@@ -42,10 +41,6 @@ class Game {
         this.player2.setDeck(deck2);
     }
 
-    dealCards() {
-        // If needed, implement additional dealing logic here.
-    }
-
     playRound() {
         if (this.player1.getDeck().isEmpty() || this.player2.getDeck().isEmpty()) {
             this.roundResult = 'Game Over!';
@@ -60,10 +55,10 @@ class Game {
 
         if (result === 1) {
             this.player1.getDeck().pushDeck(player1Card, player2Card);
-            this.roundResult = `${this.player1.name} wins the round!`;
+            this.roundResult = `${this.player1.name} wins the round with ${player1Card.toStringSymbol()}!`;
         } else if (result === -1) {
             this.player2.getDeck().pushDeck(player1Card, player2Card);
-            this.roundResult = `${this.player2.name} wins the round!`;
+            this.roundResult = `${this.player2.name} wins the round with ${player2Card.toStringSymbol()}!`;
         } else {
             this.handleWar([player1Card, player2Card]);
         }
@@ -109,16 +104,15 @@ class Game {
     }
 
     updateUI() {
-        // Call this function to update the UI based on the current game state
         const cardDisplay1 = document.getElementById('player1-card');
         const cardDisplay2 = document.getElementById('player2-card');
         const centerCardsElement = document.getElementById('center-cards');
         const roundResultElement = document.getElementById('round-result');
 
-        cardDisplay1.innerHTML = this.player1.getDeck().peekDeck().createCardElement().outerHTML;
-        cardDisplay2.innerHTML = this.player2.getDeck().peekDeck().createCardElement().outerHTML;
+        cardDisplay1.innerHTML = this.player1.getDeck().peekDeck()?.createCardElement().outerHTML || '';
+        cardDisplay2.innerHTML = this.player2.getDeck().peekDeck()?.createCardElement().outerHTML || '';
 
-        roundResultElement.innerHTML = this.roundResult;
+        roundResultElement.innerHTML = this.roundResult || '';
 
         // Clear the center cards display
         centerCardsElement.innerHTML = '';
