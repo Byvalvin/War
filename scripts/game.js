@@ -118,17 +118,17 @@ class Game {
         const warCardsDisplay = document.getElementById('war-cards');
 
         if (cardDisplay1 && cardDisplay2 && roundResultElement && player1DeckDisplay && player2DeckDisplay && warCardsDisplay) {
-            const player1DrawnCard = game.player1.getDrawnCard();
-            const player2DrawnCard = game.player2.getDrawnCard();
+            const player1DrawnCard = this.player1.getDrawnCard();
+            const player2DrawnCard = this.player2.getDrawnCard();
 
             cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : 'No Card';
             cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : 'No Card';
 
-            roundResultElement.innerHTML = game.roundResult;
+            roundResultElement.innerHTML = this.roundResult;
 
             // Update deck displays
-            player1DeckDisplay.innerHTML = `Deck (${game.player1.getDeck().sizeDeck()} cards)`;
-            player2DeckDisplay.innerHTML = `Deck (${game.player2.getDeck().sizeDeck()} cards)`;
+            player1DeckDisplay.innerHTML = `Deck (${this.player1.getDeck().sizeDeck()} cards)`;
+            player2DeckDisplay.innerHTML = `Deck (${this.player2.getDeck().sizeDeck()} cards)`;
 
             // Update war cards display
             if (this.warCards.length > 0) {
