@@ -55,6 +55,7 @@ class Game {
         const player2Card = this.player2.drawCard();
 
         const result = this.compareCards(player1Card, player2Card);
+        console.log(result);
 
         if (result === 1) {
             this.player1.getDeck().pushDeck(player1Card);
