@@ -33,6 +33,8 @@ const scriptStack = [
   // Add more scripts here as needed
 ];
 
+//document.addEventListener('DOMContentLoaded', () => {});
+
 // Start loading scripts from the stack
 loadScripts(scriptStack, () => {
   console.log('All scripts have been loaded and initialized.');
