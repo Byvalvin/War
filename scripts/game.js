@@ -9,11 +9,13 @@ class Game {
     }
 
     initializeGame() {
-        this.setupDecks();
+        const fullDeck = this.createDeck();
+        fullDeck.shuffle();
+        this.dealCards(fullDeck);
         this.updateUI();
     }
 
-    setupDecks() {
+    createDeck() {
         const suits = ['s', 'h', 'd', 'c'];
         const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
 
@@ -24,9 +26,10 @@ class Game {
                 deck.pushDeck(new Card(suit, rank));
             });
         });
+        return deck;
+    }
 
-        deck.shuffle();
-
+    dealCards(deck) {
         // Split the deck between players
         const cardsPerPlayer = Math.floor(deck.sizeDeck() / 2);
         const deck1 = new Deck('player1');
@@ -48,17 +51,19 @@ class Game {
             return;
         }
 
-        const player1Card = this.player1.getDeck().popDeck();
-        const player2Card = this.player2.getDeck().popDeck();
+        const player1Card = this.player1.drawCard();
+        const player2Card = this.player2.drawCard();
 
         const result = this.compareCards(player1Card, player2Card);
 
         if (result === 1) {
-            this.player1.getDeck().pushDeck(player1Card, player2Card);
-            this.roundResult = `${this.player1.name} wins the round with ${player1Card.toStringSymbol()}!`;
+            this.player1.getDeck().pushDeck(player1Card);
+            this.player1.getDeck().pushDeck(player2Card);
+            this.roundResult = `${this.player1.name} wins the round!`;
         } else if (result === -1) {
-            this.player2.getDeck().pushDeck(player1Card, player2Card);
-            this.roundResult = `${this.player2.name} wins the round with ${player2Card.toStringSymbol()}!`;
+            this.player2.getDeck().pushDeck(player1Card);
+            this.player2.getDeck().pushDeck(player2Card);
+            this.roundResult = `${this.player2.name} wins the round!`;
         } else {
             this.handleWar([player1Card, player2Card]);
         }
@@ -80,12 +85,12 @@ class Game {
         const player2WarCards = [];
 
         for (let i = 0; i < 3; i++) {
-            player1WarCards.push(this.player1.getDeck().popDeck());
-            player2WarCards.push(this.player2.getDeck().popDeck());
+            player1WarCards.push(this.player1.drawCard());
+            player2WarCards.push(this.player2.drawCard());
         }
 
-        const player1WarCard = this.player1.getDeck().popDeck();
-        const player2WarCard = this.player2.getDeck().popDeck();
+        const player1WarCard = this.player1.drawCard();
+        const player2WarCard = this.player2.drawCard();
 
         warCards.push(player1WarCard, player2WarCard);
 
@@ -109,12 +114,11 @@ class Game {
         const centerCardsElement = document.getElementById('center-cards');
         const roundResultElement = document.getElementById('round-result');
 
-        cardDisplay1.innerHTML = this.player1.getDeck().peekDeck()?.createCardElement().outerHTML || '';
-        cardDisplay2.innerHTML = this.player2.getDeck().peekDeck()?.createCardElement().outerHTML || '';
+        cardDisplay1.innerHTML = this.player1.getDrawnCard().createCardElement().outerHTML;
+        cardDisplay2.innerHTML = this.player2.getDrawnCard().createCardElement().outerHTML;
 
-        roundResultElement.innerHTML = this.roundResult || '';
+        centerCardsElement.innerHTML = ''; // Clear the center cards display
 
-        // Clear the center cards display
-        centerCardsElement.innerHTML = '';
+        roundResultElement.innerHTML = this.roundResult;
     }
 }
