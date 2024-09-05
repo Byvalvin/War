@@ -24,9 +24,9 @@ const loadScripts = (stack, onComplete) => {
 
 // Define the stack of scripts
 const scriptStack = [
-  { src: 'scripts/card.js },
-  { src: 'scripts/deck.js },
-  { src: 'scripts/game.js },
+  { src: 'scripts/card.js' },
+  { src: 'scripts/deck.js' },
+  { src: 'scripts/game.js' },
   { src: 'scripts/war.js' },
   // { src: 'scripts/mode.js'},
   // Add more scripts here as needed
