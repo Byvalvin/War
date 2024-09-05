@@ -5,6 +5,7 @@ class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.roundResult = ''; // To store the result of the round
+        this.warCards = []; // To store the cards put aside during a war
         this.initializeGame();
     }
 
@@ -30,7 +31,6 @@ class Game {
     }
 
     dealCards(deck) {
-        // Split the deck between players
         const cardsPerPlayer = Math.floor(deck.sizeDeck() / 2);
         const deck1 = new Deck('player1');
         const deck2 = new Deck('player2');
@@ -106,24 +106,39 @@ class Game {
         } else {
             this.handleWar(warCards); // Recursive call for another war if there's still a tie
         }
+        this.warCards = warCards; // Save war cards for display
     }
 
     updateUI() {
+        if (!game) return;
+
         const cardDisplay1 = document.getElementById('player1-card');
         const cardDisplay2 = document.getElementById('player2-card');
-        const centerCardsElement = document.getElementById('center-cards');
         const roundResultElement = document.getElementById('round-result');
+        const player1DeckDisplay = document.getElementById('player1-deck');
+        const player2DeckDisplay = document.getElementById('player2-deck');
+        const warCardsDisplay = document.getElementById('war-cards');
 
-        const player1DrawnCard = this.player1.getDrawnCard();
-        const player2DrawnCard = this.player2.getDrawnCard();
-        if(player1DrawnCard && player2DrawnCard && this.roundResult){
-            cardDisplay1.innerHTML = player1DrawnCard.createCardElement().outerHTML;
-            cardDisplay2.innerHTML = player2DrawnCard.createCardElement().outerHTML;
-            
-            centerCardsElement.innerHTML = ''; // Clear the center cards display
-            roundResultElement.innerHTML = this.roundResult;
+        if (cardDisplay1 && cardDisplay2 && roundResultElement && player1DeckDisplay && player2DeckDisplay && warCardsDisplay) {
+            const player1DrawnCard = game.player1.getDrawnCard();
+            const player2DrawnCard = game.player2.getDrawnCard();
+
+            cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : 'No Card';
+            cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : 'No Card';
+
+            roundResultElement.innerHTML = game.roundResult;
+
+            // Update deck displays
+            player1DeckDisplay.innerHTML = `Deck (${game.player1.getDeck().sizeDeck()} cards)`;
+            player2DeckDisplay.innerHTML = `Deck (${game.player2.getDeck().sizeDeck()} cards)`;
+
+            // Update war cards display
+            if (this.warCards.length > 0) {
+                warCardsDisplay.innerHTML = 'War Cards: ' + this.warCards.map(card => card.createCardElement().outerHTML).join(' ');
+            } else {
+                warCardsDisplay.innerHTML = '';
+            }
         }
-
-        
     }
 }
+
