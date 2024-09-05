@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>War Card Game</h1>
+
+        <div class="player-selection">
+            <label for="player-mode">Select Game Mode:</label>
+            <select id="player-mode">
+                <option value="cpu-vs-cpu">CPU vs CPU</option>
+                <option value="human-vs-cpu">Human vs CPU</option>
+                <option value="human-vs-human">Human vs Human</option>
+            </select>
+        </div>
+
+        <div id="player-controls" class="controls">
+            <button id="draw-button">Draw Card</button>
+            <button id="shuffle-button">Shuffle Deck</button>
+        </div>
+
+        <div id="card-display" class="card-display">
+            <div id="player1-card" class="card"></div>
+            <div id="player2-card" class="card"></div>
+        </div>
+
+        <div id="round-result" class="round-result"></div>
+
+        <div id="center-cards" class="center-cards"></div>
+    </div>
+
+    <script src="card.js"></script>
+    <script src="deck.js"></script>
+    <script src="player.js"></script>
+    <script src="game.js"></script>
+    <script src="war.js"></script>
+</body>
+</html>
