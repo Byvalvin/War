@@ -58,11 +58,11 @@ class Game {
         console.log(result);
 
         if (result > 0) {
-            this.player1.getDeck().pushDeck(player1Card, player2Card);
+            this.player1.getDeck().updateDeck([player1Card, player2Card]);
             this.player1.shuffleDeck();
             this.roundResult = `${this.player1.name} wins the round!`;
         } else if (result < 0) {
-            this.player2.getDeck().pushDeck(player1Card, player2Card);
+            this.player2.getDeck().updateDeck([player1Card, player2Card]);
             this.player2.shuffleDeck();
             this.roundResult = `${this.player2.name} wins the round!`;
         } else {
@@ -104,11 +104,11 @@ class Game {
 
         const result = this.compareCards(player1WarCard, player2WarCard);
         if (result > 0) {
-            this.player1.getDeck().pushDeck(...warCards);
+            this.player1.getDeck().updateDeck(...warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
             warCards = [];
         } else if (result < 0) {
-            this.player2.getDeck().pushDeck(...warCards);
+            this.player2.getDeck().updateDeck(...warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
             warCards = [];
         } else {
