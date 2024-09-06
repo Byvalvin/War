@@ -52,29 +52,33 @@ body {
     margin-bottom: 10px;
 }
 
-/* Deck and War Cards */
-.deck, .war-cards {
-    margin: 10px 0;
-}
-
-.deck div, .war-cards div {
-    margin: 5px;
-    display: inline-block;
+/* Card Container */
+.card-container {
+    width: 7em; /* Fixed width */
+    height: 9.1em; /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    margin: 5px auto; /* Center the card container */
+    position: relative;
 }
 
 /* Card Styling */
 .card {
-    width: 7em; /* Reduced width */
-    height: 9.1em; /* Adjusted height */
+    width: 100%; /* Fill the container width */
+    height: 100%; /* Fill the container height */
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em; /* Adjusted font size */
+    font-size: 1.5em; /* Adjust font size */
     position: relative;
-    margin: 5px; /* Reduced margin */
+    margin: 0; /* Remove margin inside container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
     transition: transform 0.3s ease; /* Add transition for hover effects */
 }
@@ -108,6 +112,16 @@ body {
     background: #999;
 }
 
+/* Deck and War Cards */
+.deck, .war-cards {
+    margin: 10px 0;
+}
+
+.deck div, .war-cards div {
+    margin: 5px;
+    display: inline-block;
+}
+
 /* Buttons */
 button {
     padding: 12px 24px;
@@ -115,14 +129,14 @@ button {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #28a745; /* Change button color for better visibility */
-    border: 2px solid #218838; /* Highlight border on hover */
+    background-color: #28a745; /* Button color for visibility */
+    border: 2px solid #218838; /* Highlight border */
     color: #fff;
     transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effects */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #218838; /* Darker green on hover */
     transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
@@ -171,9 +185,12 @@ select {
         width: 80%;
     }
 
-    .card {
+    .card-container {
         width: 6em; /* Further reduced width */
         height: 8em; /* Further adjusted height */
+    }
+
+    .card {
         font-size: 1.2em; /* Further adjusted font size */
     }
 
@@ -189,9 +206,12 @@ select {
 }
 
 @media (max-width: 480px) {
-    .card {
+    .card-container {
         width: 5em; /* Further reduced width */
         height: 6.5em; /* Further adjusted height */
+    }
+
+    .card {
         font-size: 1em; /* Further adjusted font size */
     }
 
