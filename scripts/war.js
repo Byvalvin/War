@@ -77,11 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!game) return;
         game.updateUI();
 
-        const warButton = document.getElementById('war-button');
         if (game.roundResult && game.roundResult.includes('The war continues!')) {
-            warButton.style.display = 'inline-block'; // Show the war button if the round result includes "The war continues!"
+            game.showWarButton(); // Show the war button if the round result includes "The war continues!"
         } else {
-            warButton.style.display = 'none'; // Hide the war button otherwise
+            game.hideWarButton(); // Hide the war button otherwise
         }
     }
 
