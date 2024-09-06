@@ -1,5 +1,3 @@
-// war.js
-
 document.addEventListener('DOMContentLoaded', () => {
     let game;
 
@@ -65,14 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateUI();
             }
         });
+
+        // Add event listener for the war button
+        document.getElementById('war-button').addEventListener('click', () => {
+            if (game) {
+                game.handleWar(game.warCards);
+                updateUI();
+            }
+        });
     }
 
     function updateUI() {
         if (!game) return;
         game.updateUI();
+
+        const warButton = document.getElementById('war-button');
+        if (game.roundResult && game.roundResult.includes('The war continues!')) {
+            warButton.style.display = 'inline-block'; // Show the war button if the round result includes "The war continues!"
+        } else {
+            warButton.style.display = 'none'; // Hide the war button otherwise
+        }
     }
 
     initializeGame();
 });
-
-
