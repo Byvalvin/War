@@ -64,17 +64,17 @@ body {
 
 /* Card Styling */
 .card {
-    width: 10em; /* Use em units for responsiveness */
-    height: 13em;
+    width: 7em; /* Reduced width */
+    height: 9.1em; /* Adjusted height */
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2em; /* Use em units for responsiveness */
+    font-size: 1.5em; /* Adjusted font size */
     position: relative;
-    margin: 10px;
+    margin: 5px; /* Reduced margin */
     transition: transform 0.3s ease; /* Add transition for hover effects */
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 .card-symbol {
-    font-size: 3em; /* Use em units for responsiveness */
+    font-size: 2em; /* Adjusted font size */
 }
 
 .card-symbol.spades::before {
@@ -165,9 +165,9 @@ select {
     }
 
     .card {
-        width: 8em;
-        height: 11em;
-        font-size: 1.5em;
+        width: 6em; /* Further reduced width */
+        height: 8em; /* Further adjusted height */
+        font-size: 1.2em; /* Further adjusted font size */
     }
 
     button {
@@ -183,9 +183,9 @@ select {
 
 @media (max-width: 480px) {
     .card {
-        width: 7em;
-        height: 10em;
-        font-size: 1.2em;
+        width: 5em; /* Further reduced width */
+        height: 6.5em; /* Further adjusted height */
+        font-size: 1em; /* Further adjusted font size */
     }
 
     button {
