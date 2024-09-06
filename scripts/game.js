@@ -107,11 +107,9 @@ class Game {
         if (result > 0) {
             this.player1.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
-            warCards = [];
         } else if (result < 0) {
             this.player2.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
-            warCards = [];
         } else {
             if (warCards.length > 52) { // Limit the number of recursive calls to prevent stack overflow
                 this.roundResult += ' The war continues with more cards!';
@@ -163,6 +161,7 @@ class Game {
                     cardElement.classList.add('war-card'); // Optional: Add a specific class for war cards
                     return cardElement.outerHTML;
                 }).join(' ');
+                this.warCards = [];
             } else {
                 warCardsDisplay.innerHTML = '';
             }
