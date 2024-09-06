@@ -50,27 +50,31 @@ class Game {
             this.updateUI();
             return;
         }
-
+    
         const player1Card = this.player1.drawCard();
         const player2Card = this.player2.drawCard();
-
+    
         const result = this.compareCards(player1Card, player2Card);
-        console.log(result);
-
+    
         if (result > 0) {
+            // Player 1 wins this round
             this.player1.getDeck().updateDeck([player1Card, player2Card]);
             this.player1.shuffleDeck();
             this.roundResult = `${this.player1.name} wins the round!`;
         } else if (result < 0) {
+            // Player 2 wins this round
             this.player2.getDeck().updateDeck([player1Card, player2Card]);
             this.player2.shuffleDeck();
             this.roundResult = `${this.player2.name} wins the round!`;
         } else {
+            // It's a tie, handle the war
             this.handleWar([player1Card, player2Card]);
         }
-
+    
+        // Always update the UI at the end of the round
         this.updateUI();
     }
+
 
     compareCards(card1, card2) {
         let card1Value = card1.rankCard();
@@ -86,24 +90,25 @@ class Game {
             this.updateUI();
             return;
         }
-
+    
         const player1WarCards = [];
         const player2WarCards = [];
-
+    
         for (let i = 0; i < 3; i++) {
             player1WarCards.push(this.player1.drawCard());
             player2WarCards.push(this.player2.drawCard());
         }
-
+    
         const player1WarCard = this.player1.drawCard();
         const player2WarCard = this.player2.drawCard();
-
+    
         warCards.push(player1WarCard, player2WarCard);
-        console.log(warCards);
-
+        warCards.push(...player1WarCards, ...player2WarCards);
+    
         this.roundResult = `War! ${this.player1.name} plays ${player1WarCard.toStringSymbol()} and ${this.player2.name} plays ${player2WarCard.toStringSymbol()}`;
-
+    
         const result = this.compareCards(player1WarCard, player2WarCard);
+    
         if (result > 0) {
             this.player1.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
@@ -111,14 +116,16 @@ class Game {
             this.player2.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
         } else {
-            if (warCards.length > 52) { // Limit the number of recursive calls to prevent stack overflow
-                this.roundResult += ' The war continues with more cards!';
-            } else {
+            if (this.player1.getDeck().sizeDeck() > 0 && this.player2.getDeck().sizeDeck() > 0) {
+                this.roundResult += ' The war continues!';
                 this.handleWar(warCards); // Recursive call for another war if there's still a tie
+            } else {
+                this.roundResult += ' The war ends as one player has run out of cards!';
             }
         }
-        this.warCards = warCards; // Save war cards for display
+        this.updateUI(); // Update UI after handling the war
     }
+
 
     updateUI() {
         const cardDisplay1 = document.getElementById('player1-card');
