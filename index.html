@@ -9,33 +9,32 @@
 <body>
     <div id="game-container">
         <div class="player-section">
-            <div class="player">
-                <h2 id="player1-name">Player 1</h2>
-                <div id="player1-deck" class="deck"></div>
-                <button id="shuffle-player1">Shuffle Your Deck</button>
+            <div id="player1" class="player">
+                <h2>Player 1</h2>
+                <div id="player1-card"></div>
+                <div id="player1-deck"></div>
+                <button id="shuffle-player1">Shuffle Player 1 Deck</button>
             </div>
-            
-            <div class="player">
-                <h2 id="player2-name">Player 2</h2>
-                <div id="player2-deck" class="deck"></div>
-                <button id="shuffle-player2">Shuffle Your Deck</button>
+            <div id="player2" class="player">
+                <h2>Player 2</h2>
+                <div id="player2-card"></div>
+                <div id="player2-deck"></div>
+                <button id="shuffle-player2">Shuffle Player 2 Deck</button>
             </div>
         </div>
-        
-        <div id="war-cards" class="war-cards"></div>
-
-        <div id="player1-card" class="card"></div>
-        <div id="player2-card" class="card"></div>
-        <div id="round-result"></div>
-
+        <div id="center-cards">
+            <button id="draw-button">Draw Cards</button>
+            <button id="shuffle-button">Shuffle Both Decks</button>
+        </div>
         <select id="player-mode">
             <option value="cpu-vs-cpu">CPU vs CPU</option>
             <option value="human-vs-cpu">Human vs CPU</option>
             <option value="human-vs-human">Human vs Human</option>
         </select>
-        <button id="draw-button">Draw Cards</button>
-        <button id="shuffle-button">Shuffle Both Decks</button>
+        <div id="round-result"></div>
+        <div id="war-cards"></div>
     </div>
+
 
     <script src="scripts/card.js"></script>
     <script src="scripts/deck.js"></script>
