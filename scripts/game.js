@@ -128,26 +128,44 @@ class Game {
         const player1DeckDisplay = document.getElementById('player1-deck');
         const player2DeckDisplay = document.getElementById('player2-deck');
         const warCardsDisplay = document.getElementById('war-cards');
-
+    
         if (cardDisplay1 && cardDisplay2 && roundResultElement && player1DeckDisplay && player2DeckDisplay && warCardsDisplay) {
             const player1DrawnCard = this.player1.getDrawnCard();
             const player2DrawnCard = this.player2.getDrawnCard();
-
-            cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : '<div class="card-container">No Card</div>';
-            cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : '<div class="card-container">No Card</div>';
-
+    
+            if (player1DrawnCard) {
+                const player1CardElement = player1DrawnCard.createCardElement();
+                player1CardElement.classList.add('player1-card'); // Add player1-specific class
+                cardDisplay1.innerHTML = player1CardElement.outerHTML;
+            } else {
+                cardDisplay1.innerHTML = 'No Card';
+            }
+    
+            if (player2DrawnCard) {
+                const player2CardElement = player2DrawnCard.createCardElement();
+                player2CardElement.classList.add('player2-card'); // Add player2-specific class
+                cardDisplay2.innerHTML = player2CardElement.outerHTML;
+            } else {
+                cardDisplay2.innerHTML = 'No Card';
+            }
+    
             roundResultElement.innerHTML = this.roundResult;
-
+    
             // Update deck displays
             player1DeckDisplay.innerHTML = `Deck (${this.player1.getDeck().sizeDeck()} cards)`;
             player2DeckDisplay.innerHTML = `Deck (${this.player2.getDeck().sizeDeck()} cards)`;
-
+    
             // Update war cards display
             if (this.warCards.length > 0) {
-                warCardsDisplay.innerHTML = 'War Cards: ' + this.warCards.map(card => card.createCardElement().outerHTML).join(' ');
+                warCardsDisplay.innerHTML = 'War Cards: ' + this.warCards.map(card => {
+                    const cardElement = card.createCardElement();
+                    cardElement.classList.add('war-card'); // Optional: Add a specific class for war cards
+                    return cardElement.outerHTML;
+                }).join(' ');
             } else {
                 warCardsDisplay.innerHTML = '';
             }
         }
     }
+
 }
