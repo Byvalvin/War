@@ -98,10 +98,10 @@ class Game {
         this.roundResult = `War! ${this.player1.name} plays ${player1WarCard.toStringSymbol()} and ${this.player2.name} plays ${player2WarCard.toStringSymbol()}`;
 
         const result = this.compareCards(player1WarCard, player2WarCard);
-        if (result === 1) {
+        if (result > 0) {
             this.player1.getDeck().pushDeck(...warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
-        } else if (result === -1) {
+        } else if (result < 0) {
             this.player2.getDeck().pushDeck(...warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
         } else {
