@@ -57,11 +57,11 @@ class Game {
         const result = this.compareCards(player1Card, player2Card);
         console.log(result);
 
-        if (result === 1) {
+        if (result > 0) {
             this.player1.getDeck().pushDeck(player1Card);
             this.player1.getDeck().pushDeck(player2Card);
             this.roundResult = `${this.player1.name} wins the round!`;
-        } else if (result === -1) {
+        } else if (result < 0) {
             this.player2.getDeck().pushDeck(player1Card);
             this.player2.getDeck().pushDeck(player2Card);
             this.roundResult = `${this.player2.name} wins the round!`;
