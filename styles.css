@@ -52,6 +52,24 @@ body {
     margin-bottom: 10px;
 }
 
+/* Player 1 Cards */
+.player1-card {
+    border-color: #007bff; /* Blue border for Player 1 */
+    background-color: #e0f7fa; /* Light cyan background for Player 1 */
+}
+
+/* Player 2 Cards */
+.player2-card {
+    border-color: #ff5722; /* Orange border for Player 2 */
+    background-color: #ffe0b2; /* Light orange background for Player 2 */
+}
+
+/* War Cards (if needed) */
+.war-card {
+    border-color: #999; /* Gray border for War Cards */
+    background-color: #f1f1f1; /* Light gray background for War Cards */
+}
+
 /* Card Container */
 .card-container {
     width: 7em; /* Fixed width */
