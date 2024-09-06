@@ -106,9 +106,11 @@ class Game {
         if (result > 0) {
             this.player1.getDeck().pushDeck(...warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
+            warCards = [];
         } else if (result < 0) {
             this.player2.getDeck().pushDeck(...warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
+            warCards = [];
         } else {
             if (warCards.length > 52) { // Limit the number of recursive calls to prevent stack overflow
                 this.roundResult += ' The war continues with more cards!';
