@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add event listener for the war button
         document.getElementById('war-button').addEventListener('click', () => {
             if (game) {
-                game.handleWar(game.warCards);
+                game.handleWar();
                 updateUI();
             }
         });
