@@ -5,6 +5,7 @@ class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.roundResult = ''; // To store the result of the round
+        this.warWinner = null; // Initialize warWinner
         this.warCards = []; // To store the cards put aside during a war
         this.initializeGame();
     }
