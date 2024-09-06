@@ -36,15 +36,23 @@ body {
     width: 45%;
     margin: 10px 0;
     padding: 10px;
-    background-color: #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player1 {
+    background-color: #e0f7fa; /* Light cyan */
+}
+
+.player2 {
+    background-color: #ffe0b2; /* Light orange */
 }
 
 .player h2 {
     margin-bottom: 10px;
 }
 
+/* Deck and War Cards */
 .deck, .war-cards {
     margin: 10px 0;
 }
@@ -67,7 +75,6 @@ body {
     font-size: 2em; /* Use em units for responsiveness */
     position: relative;
     margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
     transition: transform 0.3s ease; /* Add transition for hover effects */
 }
 
@@ -105,16 +112,16 @@ button {
     padding: 12px 24px;
     margin: 10px;
     font-size: 16px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #28a745; /* Change button color for better visibility */
-    border: 2px solid #218838; /* Highlight border on hover 
+    background-color: #007bff;
     color: #fff;
     transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effects */
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
     transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
@@ -145,13 +152,6 @@ select {
     justify-content: center;
     margin: 20px 0;
 }
-
-#war-cards {
-    border: 2px dashed #007bff; /* Use dashed border to highlight */
-    padding: 10px;
-    background-color: #f9f9f9;
-}
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
