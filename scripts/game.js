@@ -1,5 +1,3 @@
-// game.js
-
 class Game {
     constructor(player1, player2) {
         this.player1 = player1;
@@ -46,7 +44,7 @@ class Game {
     }
 
     playRound() {
-        // Reset war cards for the next round
+        // Reset war cards and winner for the next round
         this.warCards = [];
         this.warWinner = null;
         
@@ -119,12 +117,10 @@ class Game {
     
         if (result > 0) {
             this.player1.getDeck().updateDeck(this.warCards);
-            this.warCards.forEach(card => card.setColor('blue')); // Set color for Player 1's cards
             this.roundResult += ` ${this.player1.name} wins the war!`;
             winner = 'player1'; // Winner is player 1
         } else if (result < 0) {
             this.player2.getDeck().updateDeck(this.warCards);
-            this.warCards.forEach(card => card.setColor('red')); // Set color for Player 2's cards
             this.roundResult += ` ${this.player2.name} wins the war!`;
             winner = 'player2'; // Winner is player 2
         } else {
