@@ -112,10 +112,12 @@ class Game {
     
         if (result > 0) {
             this.player1.getDeck().updateDeck(warCards);
+            this.warCards = warCards;
             this.roundResult += ` ${this.player1.name} wins the war!`;
             winner = 'player1'; // Winner is player 1
         } else if (result < 0) {
             this.player2.getDeck().updateDeck(warCards);
+            this.warCards = warCards;
             this.roundResult += ` ${this.player2.name} wins the war!`;
             winner = 'player2'; // Winner is player 2
         } else {
