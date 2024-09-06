@@ -58,13 +58,11 @@ class Game {
         console.log(result);
 
         if (result > 0) {
-            this.player1.getDeck().pushDeck(player1Card);
-            this.player1.getDeck().pushDeck(player2Card);
+            this.player1.getDeck().pushDeck(player1Card, player2Card);
             this.player1.shuffleDeck();
             this.roundResult = `${this.player1.name} wins the round!`;
         } else if (result < 0) {
-            this.player2.getDeck().pushDeck(player1Card);
-            this.player2.getDeck().pushDeck(player2Card);
+            this.player2.getDeck().pushDeck(player1Card, player2Card);
             this.player2.shuffleDeck();
             this.roundResult = `${this.player2.name} wins the round!`;
         } else {
@@ -77,14 +75,15 @@ class Game {
     compareCards(card1, card2) {
         let card1Value = card1.rankCard();
         let card2Value = card2.rankCard();
-        card1Value = card1Value===1 ? 14 : card1Value;
-        card2Value = card2Value===1 ? 14 : card2Value;
+        card1Value = card1Value === 1 ? 14 : card1Value; // Aces high
+        card2Value = card2Value === 1 ? 14 : card2Value; // Aces high
         return card1Value - card2Value;
     }
 
     handleWar(warCards) {
         if (this.player1.getDeck().sizeDeck() < 4 || this.player2.getDeck().sizeDeck() < 4) {
             this.roundResult = 'Not enough cards for war!';
+            this.updateUI();
             return;
         }
 
@@ -111,7 +110,11 @@ class Game {
             this.player2.getDeck().pushDeck(...warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
         } else {
-            this.handleWar(warCards); // Recursive call for another war if there's still a tie
+            if (warCards.length > 52) { // Limit the number of recursive calls to prevent stack overflow
+                this.roundResult += ' The war continues with more cards!';
+            } else {
+                this.handleWar(warCards); // Recursive call for another war if there's still a tie
+            }
         }
         this.warCards = warCards; // Save war cards for display
     }
@@ -128,8 +131,8 @@ class Game {
             const player1DrawnCard = this.player1.getDrawnCard();
             const player2DrawnCard = this.player2.getDrawnCard();
 
-            cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : 'No Card';
-            cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : 'No Card';
+            cardDisplay1.innerHTML = player1DrawnCard ? player1DrawnCard.createCardElement().outerHTML : '<div class="card-container">No Card</div>';
+            cardDisplay2.innerHTML = player2DrawnCard ? player2DrawnCard.createCardElement().outerHTML : '<div class="card-container">No Card</div>';
 
             roundResultElement.innerHTML = this.roundResult;
 
@@ -146,4 +149,3 @@ class Game {
         }
     }
 }
-
