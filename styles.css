@@ -52,7 +52,6 @@ body {
     margin-bottom: 10px;
 }
 
-
 /* Card Container */
 .card-container {
     width: 7em; /* Fixed width */
@@ -100,13 +99,22 @@ body {
     background-color: #ffe0b2; /* Light orange background for Player 2 */
 }
 
-/* War Cards (if needed) */
+/* War Cards */
 .war-card {
     border-color: #999; /* Gray border for War Cards */
     background-color: #f1f1f1; /* Light gray background for War Cards */
 }
 
+/* War Card Colors by Winner */
+.player1-war-card {
+    border-color: #007bff; /* Blue border for Player 1's war cards */
+}
 
+.player2-war-card {
+    border-color: #ff5722; /* Orange border for Player 2's war cards */
+}
+
+/* Card Symbols */
 .card-symbol {
     font-size: 2em; /* Adjusted font size */
 }
@@ -140,6 +148,24 @@ body {
 .deck div, .war-cards div {
     margin: 5px;
     display: inline-block;
+}
+
+/* War Button */
+#war-button {
+    display: none; /* Initially hidden */
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #dc3545; /* Red button for war */
+    border: 2px solid #c82333; /* Darker red border */
+    color: #fff;
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effects */
+}
+
+#war-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
 /* Buttons */
@@ -186,12 +212,6 @@ select {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-}
-
-#war-cards {
-    border: 2px dashed #007bff; /* Use dashed border to highlight */
-    padding: 10px;
-    background-color: #f9f9f9;
 }
 
 /* Responsive Design */
