@@ -60,10 +60,12 @@ class Game {
         if (result > 0) {
             this.player1.getDeck().pushDeck(player1Card);
             this.player1.getDeck().pushDeck(player2Card);
+            this.player1.shuffleDeck();
             this.roundResult = `${this.player1.name} wins the round!`;
         } else if (result < 0) {
             this.player2.getDeck().pushDeck(player1Card);
             this.player2.getDeck().pushDeck(player2Card);
+            this.player2.shuffleDeck();
             this.roundResult = `${this.player2.name} wins the round!`;
         } else {
             this.handleWar([player1Card, player2Card]);
