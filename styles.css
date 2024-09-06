@@ -75,6 +75,7 @@ body {
     font-size: 1.5em; /* Adjusted font size */
     position: relative;
     margin: 5px; /* Reduced margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
     transition: transform 0.3s ease; /* Add transition for hover effects */
 }
 
@@ -112,10 +113,10 @@ button {
     padding: 12px 24px;
     margin: 10px;
     font-size: 16px;
-    border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #28a745; /* Change button color for better visibility */
+    border: 2px solid #218838; /* Highlight border on hover */
     color: #fff;
     transition: background-color 0.3s, transform 0.3s; /* Add transition for hover effects */
 }
@@ -151,6 +152,12 @@ select {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+}
+
+#war-cards {
+    border: 2px dashed #007bff; /* Use dashed border to highlight */
+    padding: 10px;
+    background-color: #f9f9f9;
 }
 
 /* Responsive Design */
