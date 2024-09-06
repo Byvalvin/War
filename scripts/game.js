@@ -45,6 +45,10 @@ class Game {
     }
 
     playRound() {
+        // Reset war cards for the next round
+        this.warCards = [];
+        this.warWinner = null;
+        
         if (this.player1.getDeck().isEmpty() || this.player2.getDeck().isEmpty()) {
             this.roundResult = 'Game Over!';
             this.updateUI();
@@ -189,10 +193,6 @@ class Game {
             } else {
                 warCardsDisplay.innerHTML = '';
             }
-    
-            // Reset war cards for the next round
-            //this.warCards = [];
-            //this.warWinner = null;
         }
     }
 
