@@ -112,19 +112,24 @@ class Game {
         if (result > 0) {
             this.player1.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
+            this.warCards = []; // Clear war cards after the war is resolved
         } else if (result < 0) {
             this.player2.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
+            this.warCards = []; // Clear war cards after the war is resolved
         } else {
+            // Continue the war if both players still have cards
             if (this.player1.getDeck().sizeDeck() > 0 && this.player2.getDeck().sizeDeck() > 0) {
                 this.roundResult += ' The war continues!';
                 this.handleWar(warCards); // Recursive call for another war if there's still a tie
             } else {
                 this.roundResult += ' The war ends as one player has run out of cards!';
+                this.warCards = []; // Clear war cards if one player runs out of cards
             }
         }
         this.updateUI(); // Update UI after handling the war
     }
+
 
 
     updateUI() {
@@ -171,12 +176,12 @@ class Game {
                     cardElement.classList.add('war-card');
                     return cardElement.outerHTML;
                 }).join(' ');
-                this.warCards = []; // Clear war cards after displaying
             } else {
                 warCardsDisplay.innerHTML = '';
             }
         }
     }
+
 
 
 }
