@@ -99,16 +99,17 @@ class Game {
         const player2WarCard = this.player2.drawCard();
 
         warCards.push(player1WarCard, player2WarCard);
+        console.log(warCards);
 
         this.roundResult = `War! ${this.player1.name} plays ${player1WarCard.toStringSymbol()} and ${this.player2.name} plays ${player2WarCard.toStringSymbol()}`;
 
         const result = this.compareCards(player1WarCard, player2WarCard);
         if (result > 0) {
-            this.player1.getDeck().updateDeck(...warCards);
+            this.player1.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
             warCards = [];
         } else if (result < 0) {
-            this.player2.getDeck().updateDeck(...warCards);
+            this.player2.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
             warCards = [];
         } else {
