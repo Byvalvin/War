@@ -108,27 +108,31 @@ class Game {
         this.roundResult = `War! ${this.player1.name} plays ${player1WarCard.toStringSymbol()} and ${this.player2.name} plays ${player2WarCard.toStringSymbol()}`;
     
         const result = this.compareCards(player1WarCard, player2WarCard);
+        let winner = null;
     
         if (result > 0) {
             this.player1.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player1.name} wins the war!`;
-            this.warCards = []; // Clear war cards after the war is resolved
+            winner = 'player1'; // Winner is player 1
         } else if (result < 0) {
             this.player2.getDeck().updateDeck(warCards);
             this.roundResult += ` ${this.player2.name} wins the war!`;
-            this.warCards = []; // Clear war cards after the war is resolved
+            winner = 'player2'; // Winner is player 2
         } else {
-            // Continue the war if both players still have cards
             if (this.player1.getDeck().sizeDeck() > 0 && this.player2.getDeck().sizeDeck() > 0) {
                 this.roundResult += ' The war continues!';
                 this.handleWar(warCards); // Recursive call for another war if there's still a tie
             } else {
                 this.roundResult += ' The war ends as one player has run out of cards!';
-                this.warCards = []; // Clear war cards if one player runs out of cards
             }
         }
+    
+        // Store winner for use in updateUI
+        this.warWinner = winner;
+    
         this.updateUI(); // Update UI after handling the war
     }
+
 
 
 
@@ -173,14 +177,23 @@ class Game {
             if (this.warCards && this.warCards.length > 0) {
                 warCardsDisplay.innerHTML = 'War Cards: ' + this.warCards.map(card => {
                     const cardElement = card.createCardElement();
-                    cardElement.classList.add('war-card');
+                    if (this.warWinner) {
+                        cardElement.classList.add(this.warWinner + '-card'); // Add winner-specific class
+                    } else {
+                        cardElement.classList.add('war-card'); // Default war card class
+                    }
                     return cardElement.outerHTML;
                 }).join(' ');
             } else {
                 warCardsDisplay.innerHTML = '';
             }
+            
+            // Reset war cards for the next round
+            this.warCards = [];
+            this.warWinner = null;
         }
     }
+
 
 
 
