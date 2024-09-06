@@ -75,7 +75,11 @@ class Game {
     }
 
     compareCards(card1, card2) {
-        return card1.rankCard() - card2.rankCard();
+        let card1Value = card1.rankCard();
+        let card2Value = card2.rankCard();
+        card1Value = card1Value===1 ? 14 : card1Value;
+        card2Value = card2Value===1 ? 14 : card2Value;
+        return card1Value - card2Value;
     }
 
     handleWar(warCards) {
