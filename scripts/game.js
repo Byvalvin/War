@@ -189,12 +189,13 @@ class Game {
             } else {
                 warCardsDisplay.innerHTML = '';
             }
-            
+    
             // Reset war cards for the next round
-            this.warCards = [];
-            this.warWinner = null;
+            //this.warCards = [];
+            //this.warWinner = null;
         }
     }
+
 
 
 
