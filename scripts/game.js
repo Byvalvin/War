@@ -139,22 +139,25 @@ class Game {
             const player1DrawnCard = this.player1.getDrawnCard();
             const player2DrawnCard = this.player2.getDrawnCard();
     
+            // Display Player 1's card
             if (player1DrawnCard) {
                 const player1CardElement = player1DrawnCard.createCardElement();
-                player1CardElement.classList.add('player1-card'); // Add player1-specific class
+                player1CardElement.classList.add('player1-card');
                 cardDisplay1.innerHTML = player1CardElement.outerHTML;
             } else {
                 cardDisplay1.innerHTML = 'No Card';
             }
     
+            // Display Player 2's card
             if (player2DrawnCard) {
                 const player2CardElement = player2DrawnCard.createCardElement();
-                player2CardElement.classList.add('player2-card'); // Add player2-specific class
+                player2CardElement.classList.add('player2-card');
                 cardDisplay2.innerHTML = player2CardElement.outerHTML;
             } else {
                 cardDisplay2.innerHTML = 'No Card';
             }
     
+            // Display round result
             roundResultElement.innerHTML = this.roundResult;
     
             // Update deck displays
@@ -162,17 +165,18 @@ class Game {
             player2DeckDisplay.innerHTML = `Deck (${this.player2.getDeck().sizeDeck()} cards)`;
     
             // Update war cards display
-            if (this.warCards.length > 0) {
+            if (this.warCards && this.warCards.length > 0) {
                 warCardsDisplay.innerHTML = 'War Cards: ' + this.warCards.map(card => {
                     const cardElement = card.createCardElement();
-                    cardElement.classList.add('war-card'); // Optional: Add a specific class for war cards
+                    cardElement.classList.add('war-card');
                     return cardElement.outerHTML;
                 }).join(' ');
-                this.warCards = [];
+                this.warCards = []; // Clear war cards after displaying
             } else {
                 warCardsDisplay.innerHTML = '';
             }
         }
     }
+
 
 }
