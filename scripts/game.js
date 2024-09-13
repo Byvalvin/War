@@ -72,6 +72,7 @@ class Game {
         } else {
             // It's a tie, show the war button
             this.roundResult = 'It\'s a tie! Click "War" to continue.';
+            this.warCards.push(player1Card, player2Card);
             this.showWarButton();
             //return; // Exit playRound as we are waiting for the war button to be clicked
         }
