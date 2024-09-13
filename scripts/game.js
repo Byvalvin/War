@@ -73,7 +73,7 @@ class Game {
             // It's a tie, show the war button
             this.roundResult = 'It\'s a tie! Click "War" to continue.';
             this.showWarButton();
-            return; // Exit playRound as we are waiting for the war button to be clicked
+            //return; // Exit playRound as we are waiting for the war button to be clicked
         }
     
         // Always update the UI at the end of the round
