@@ -73,7 +73,7 @@ class Game {
             // It's a tie, show the war button
             this.roundResult = 'It\'s a tie! Click "War" to continue.';
             this.warCards.push(player1Card, player2Card);
-            this.showWarButton();
+            this.setupWarControls(true);
             //return; // Exit playRound as we are waiting for the war button to be clicked
         }
     
@@ -89,10 +89,19 @@ class Game {
         return card1Value - card2Value;
     }
 
+    setupWarControls(setupWar){
+        if(setupWar){
+            this.showButton('war-button');
+            this.hideButton('draw-button');
+        }else{
+            this.hideButton('war-button');
+            this.showButton('draw-button');
+        }
+    }
     handleWar() {
         if (this.player1.getDeck().sizeDeck() < 4 || this.player2.getDeck().sizeDeck() < 4) {
             this.roundResult = 'Not enough cards for war!';
-            this.hideWarButton();
+            this.setupWarControls(false);
             this.updateUI();
             return;
         }
@@ -127,26 +136,28 @@ class Game {
         } else {
             if (this.player1.getDeck().sizeDeck() > 0 && this.player2.getDeck().sizeDeck() > 0) {
                 this.roundResult += ' The war continues!';
-                this.updateUI();
-                this.showWarButton(); // Show war button for another round
+                //this.updateUI();
+                //this.showButton('war-button'); // Show war button for another round
+                //this.hideButton('draw-button');
                 return;
             } else {
                 this.roundResult += ' The war ends as one player has run out of cards!';
+                this.setupWarControls(false);
             }
         }
     
         // Store winner for use in updateUI
         this.warWinner = winner;
-        this.hideWarButton(); // Hide war button after the war
+        this.setupWarControls(false); // Hide war button after the war
         this.updateUI(); // Update UI after handling the war
     }
 
-    showWarButton() {
-        document.getElementById('war-button').style.display = 'inline-block';
+    showButton(buttonID) {
+        document.getElementById(buttonID).style.display = 'inline-block';
     }
 
-    hideWarButton() {
-        document.getElementById('war-button').style.display = 'none';
+    hideButton(buttonID) {
+        document.getElementById(buttonID).style.display = 'none';
     }
 
     updateUI() {
