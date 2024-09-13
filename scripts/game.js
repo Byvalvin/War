@@ -91,8 +91,8 @@ class Game {
     handleWar() {
         if (this.player1.getDeck().sizeDeck() < 4 || this.player2.getDeck().sizeDeck() < 4) {
             this.roundResult = 'Not enough cards for war!';
-            this.updateUI();
             this.hideWarButton();
+            this.updateUI();
             return;
         }
     
