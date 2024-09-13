@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('draw-button').addEventListener('click', () => {
             if (game) {
                 game.playRound();
-                updateUI();
+                //updateUI();
             }
         });
 
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('war-button').addEventListener('click', () => {
             if (game) {
                 game.handleWar();
-                updateUI();
+                //updateUI();
             }
         });
     }
